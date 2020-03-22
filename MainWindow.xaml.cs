@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace Kalkulator
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         long display = 0;
@@ -30,8 +27,6 @@ namespace Kalkulator
         {
             InitializeComponent();
         }
-
-
         private decimal Point
         {
             get
@@ -57,10 +52,12 @@ namespace Kalkulator
         private void UpdateDisplay()
         {
             Result.Text = (display * Point).ToString();
+            Result.Text = Result.Text.Substring(0,Math.Min(maxdigits + 1, Result.Text.Length));
         }
         private void DisplayAccumulator()
         {
-            Result.Text = accumulator.ToString().Substring(Math.Min(0,1));
+            Result.Text = accumulator.ToString();
+            Result.Text = Result.Text.Substring(0,Math.Min(maxdigits + 1, Result.Text.Length));
         }
         private void ResetDisplay()
         {
