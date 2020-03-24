@@ -52,12 +52,14 @@ namespace Kalkulator
         private void UpdateDisplay()
         {
             Result.Text = (display * Point).ToString();
-            Result.Text = Result.Text.Substring(0,Math.Min(maxdigits + 1, Result.Text.Length));
         }
         private void DisplayAccumulator()
         {
-            Result.Text = accumulator.ToString();
-            Result.Text = Result.Text.Substring(0,Math.Min(maxdigits + 1, Result.Text.Length));
+            if (Math.Abs(accumulator).ToString().Length > maxdigits) {
+                Result.Text = Decimal.ToDouble(accumulator).ToString(@"0.00000E00");
+            } else {
+                Result.Text = accumulator.ToString();
+            }
         }
         private void ResetDisplay()
         {
